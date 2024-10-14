@@ -1,54 +1,62 @@
-/* Container and board setup */
-.board-container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  align-items: center;
+  height: 100vh;
+  background-color: #2c2c2c;
 }
 
-.board {
-  border-spacing: 5px;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 80px);
+  grid-template-rows: repeat(7, 80px);
+  gap: 10px;
 }
 
-.board td {
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  position: relative; /* Needed for inset and outset bevels */
+.grid-item {
+  background-color: #333;
+  border-radius: 50%;
+  box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.9),
+  inset -5px -5px 15px rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 100%;
 }
 
-/* Peg (cell = 1) styling: red color and higher bevel */
-.peg {
-  background-color: red; /* Red peg color */
-  border-radius: 50%; /* Round peg */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* High bevel for pegs */
+/* Hide the 2x2 squares in each corner */
+/* Top-left corner */
+.grid-item:nth-child(1),
+.grid-item:nth-child(2),
+.grid-item:nth-child(8),
+.grid-item:nth-child(9) {
+  visibility: hidden;
 }
 
-/* Empty cell (cell = 0) styling: dark gray color and lower bevel */
-.empty {
-  background-color: darkgray; /* Dark gray for empty cells */
-  box-shadow: inset 0px 2px 3px rgba(0, 0, 0, 0.5); /* Lower bevel for empty cells */
+/* Top-right corner */
+.grid-item:nth-child(6),
+.grid-item:nth-child(7),
+.grid-item:nth-child(13),
+.grid-item:nth-child(14) {
+  visibility: hidden;
 }
 
-/* Invalid cells (cell = -1) - hide the corners */
-.invalid {
-  background-color: transparent; /* Make corners invisible */
-  cursor: default;
-  visibility: hidden; /* Completely hide the invalid cells */
+/* Bottom-left corner */
+.grid-item:nth-child(36),
+.grid-item:nth-child(37),
+.grid-item:nth-child(41),
+.grid-item:nth-child(42) {
+  visibility: hidden;
 }
 
-/* General board styling */
-.board td {
-  border-radius: 5px; /* Slight rounding on the edges of cells */
-  transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-/* Hover effects for better interaction feedback */
-.peg:hover {
-  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.6); /* Increase the shadow on hover for pegs */
-}
-
-.empty:hover {
-  box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.6); /* Slight deepening of the inset shadow */
+/* Bottom-right corner */
+.grid-item:nth-child(43),
+.grid-item:nth-child(44),
+.grid-item:nth-child(48),
+.grid-item:nth-child(49) {
+  visibility: hidden;
 }

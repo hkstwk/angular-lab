@@ -1,0 +1,12 @@
+<div class="board-container">
+  <table class="board">
+    <tr *ngFor="let row of board; let rowIndex = index">
+      <td *ngFor="let cell of row; let colIndex = index"
+          [class.peg]="cell === 1"
+          [class.empty]="cell === 0"
+          [class.invalid]="cell === -1"
+          (click)="handleCellClick(rowIndex, colIndex)">
+      </td>
+    </tr>
+  </table>
+</div>

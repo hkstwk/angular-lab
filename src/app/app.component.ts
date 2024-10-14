@@ -9,6 +9,19 @@ import {CommonModule} from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  items = Array.from({ length: 49 }); // Create an array with 49 items (7x7)
+
+  // Function to determine which items to hide
+  isHidden(index: number): boolean {
+    const hiddenIndices = [
+      0, 1, 5, 6,   // Top-left corner
+      7, 8, 12, 13, // Top-right corner
+      35, 36, 40, 41, // Bottom-left corner
+      42, 43, 47, 48 // Bottom-right corner
+    ];
+    return hiddenIndices.includes(index);
+  }
+
   board: number[][] = [];
 
   // Directions for moving (up, down, left, right)

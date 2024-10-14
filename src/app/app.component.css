@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-body {
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,34 +29,6 @@ body {
 }
 
 /* Hide the 2x2 squares in each corner */
-/* Top-left corner */
-.grid-item:nth-child(1),
-.grid-item:nth-child(2),
-.grid-item:nth-child(8),
-.grid-item:nth-child(9) {
-  visibility: hidden;
-}
-
-/* Top-right corner */
-.grid-item:nth-child(6),
-.grid-item:nth-child(7),
-.grid-item:nth-child(13),
-.grid-item:nth-child(14) {
-  visibility: hidden;
-}
-
-/* Bottom-left corner */
-.grid-item:nth-child(36),
-.grid-item:nth-child(37),
-.grid-item:nth-child(41),
-.grid-item:nth-child(42) {
-  visibility: hidden;
-}
-
-/* Bottom-right corner */
-.grid-item:nth-child(43),
-.grid-item:nth-child(44),
-.grid-item:nth-child(48),
-.grid-item:nth-child(49) {
+.hidden {
   visibility: hidden;
 }

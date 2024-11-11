@@ -1,25 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CounterComponent } from './counter/counter.component';
+import { XmlviewerComponent } from './xmlviewer/xmlviewer.component';
 
 @Component({
   selector: 'peg-solitaire',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, CounterComponent, XmlviewerComponent],
   templateUrl: './app.component.html',
   standalone: true,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  items = Array.from({ length: 49 }); // Create an array with 49 items (7x7)
+  name: string = '';
+  grid: number[][];
 
-  // Function to determine which items to hide
-  isHidden(index: number): boolean {
-    const hiddenIndices = [
-      0, 1, 5, 6,   // Top-left corner
-      7, 8, 12, 13, // Top-right corner
-      35, 36, 40, 41, // Bottom-left corner
-      42, 43, 47, 48 // Bottom-right corner
+  constructor() {
+    // Create a 2D array for a 7x7 grid
+    this.grid = Array.from({ length: 7 }, () => Array(7).fill(0));
+  }
+
+  // Function to determine if the cell should be hidden
+  isHidden(row: number, col: number): boolean {
+    const hiddenCells = [
+      [0, 0], [0, 1], [1, 0], [1, 1],   // Top-left corner
+      [0, 5], [0, 6], [1, 5], [1, 6],   // Top-right corner
+      [5, 0], [5, 1], [6, 0], [6, 1],   // Bottom-left corner
+      [5, 5], [5, 6], [6, 5], [6, 6]    // Bottom-right corner
     ];
-    return hiddenIndices.includes(index);
+
+    return hiddenCells.some(([hiddenRow, hiddenCol]) => hiddenRow === row && hiddenCol === col);
   }
 
   board: number[][] = [];
@@ -31,8 +41,6 @@ export class AppComponent implements OnInit {
     { x: -1, y: 0 }, // left
     { x: 1, y: 0 }   // right
   ];
-
-  constructor() {}
 
   ngOnInit(): void {
     this.initBoard();

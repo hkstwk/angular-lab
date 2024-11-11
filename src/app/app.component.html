@@ -1,4 +1,30 @@
-<div class="grid-container">
-  <!-- 7x7 grid cells -->
-  <div *ngFor="let item of items; let i = index" class="grid-item" [ngClass]="{'hidden': isHidden(i)}"></div>
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100 bg-gradient">
+  <div class="header-div text-center mb-4">
+    <h1 class="display-4 mb-3">Hello {{ name | uppercase }}!</h1>
+    <div class="input-group w-50">
+      <input
+        type="text"
+        id="nameInput"
+        class="form-control"
+        placeholder="Enter your name"
+        [(ngModel)]="name"
+      />
+      <button class="btn btn-primary" type="button">Submit</button>
+    </div>
+  </div>
+
+  <!-- Counter Component with Bootstrap Margins -->
+  <app-xmlviewer></app-xmlviewer>
+  <app-counter class="mb-4"></app-counter>
+
+  <!-- Grid Container for the Cells -->
+  <div class="grid-container">
+    <div *ngFor="let row of grid; let rowIndex = index">
+      <div
+        *ngFor="let cell of row; let colIndex = index"
+        class="grid-item"
+        [ngClass]="{'hidden': isHidden(rowIndex, colIndex)}">
+      </div>
+    </div>
+  </div>
 </div>
